@@ -10,17 +10,17 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({required String message}) : super(message: message);
+  const ServerFailure({required super.message});
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure({required String message}) : super(message: message);
+  const CacheFailure({required super.message});
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure({required String message}) : super(message: message);
+  const NetworkFailure({required super.message});
 }
 
 class ValidationFailure extends Failure {
-  const ValidationFailure({required String message}) : super(message: message);
+  const ValidationFailure({required super.message});
 } 
