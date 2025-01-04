@@ -1,4 +1,4 @@
-import '../../core/utils/typedef.dart';
+import 'package:jitta_ranking_app/core/utils/typedef.dart';
 
 abstract class BaseRepository {
   /// Check if device is connected to internet
