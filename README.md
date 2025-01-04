@@ -1,0 +1,1 @@
+# jitta_ranking_app
