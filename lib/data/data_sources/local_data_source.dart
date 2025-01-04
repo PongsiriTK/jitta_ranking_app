@@ -45,4 +45,7 @@ abstract class LocalDataSource {
 
   /// Get theme mode
   Future<bool> isDarkMode();
+
+  /// Clear all settings (market, sectors, theme)
+  Future<void> clearSettings();
 } 

@@ -275,4 +275,13 @@ class LocalDataSourceImpl implements LocalDataSource {
         .getSingleOrNull();
     return setting?.value == 'true';
   }
+
+  @override
+  Future<void> clearSettings() async {
+    await database.transaction(() async {
+      await (database.delete(database.settings)
+            ..where((t) => t.key.isIn(['selected_market', 'selected_sectors', 'theme_mode'])))
+          .go();
+    });
+  }
 } 
