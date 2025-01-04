@@ -1,0 +1,78 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flutter: Build Runner (watch)",
+            "type": "shell",
+            "command": "flutter",
+            "args": [
+                "pub",
+                "run",
+                "build_runner",
+                "watch",
+                "--delete-conflicting-outputs"
+            ],
+            "problemMatcher": [
+                "$dart-build_runner"
+            ],
+            "group": "build",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Flutter: Build Runner (build)",
+            "type": "shell",
+            "command": "flutter",
+            "args": [
+                "pub",
+                "run",
+                "build_runner",
+                "build",
+                "--delete-conflicting-outputs"
+            ],
+            "problemMatcher": [
+                "$dart-build_runner"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Flutter: Clean",
+            "type": "shell",
+            "command": "flutter",
+            "args": [
+                "clean"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Flutter: Get Packages",
+            "type": "shell",
+            "command": "flutter",
+            "args": [
+                "pub",
+                "get"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Flutter: Full Clean and Setup",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Flutter: Clean",
+                "Flutter: Get Packages",
+                "Flutter: Build Runner (build)"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+} 

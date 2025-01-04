@@ -1,0 +1,120 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Development",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "development",
+                "--target",
+                "lib/main.dart"
+            ]
+        },
+        {
+            "name": "Launch Production",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "production",
+                "--target",
+                "lib/main.dart"
+            ]
+        },
+        {
+            "name": "Launch Development (Profile Mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "development"
+            ]
+        },
+        {
+            "name": "Launch Production (Profile Mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "production"
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "All Devices",
+            "configurations": [
+                "Launch Development"
+            ]
+        }
+    ],
+    // Tasks for code generation
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "Flutter: Build Runner (watch)",
+                "type": "shell",
+                "command": "flutter",
+                "args": [
+                    "pub",
+                    "run",
+                    "build_runner",
+                    "watch",
+                    "--delete-conflicting-outputs"
+                ],
+                "problemMatcher": [
+                    "$dart-build_runner"
+                ],
+                "group": "build",
+                "isBackground": true
+            },
+            {
+                "label": "Flutter: Build Runner (build)",
+                "type": "shell",
+                "command": "flutter",
+                "args": [
+                    "pub",
+                    "run",
+                    "build_runner",
+                    "build",
+                    "--delete-conflicting-outputs"
+                ],
+                "problemMatcher": [
+                    "$dart-build_runner"
+                ],
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                }
+            },
+            {
+                "label": "Flutter: Clean",
+                "type": "shell",
+                "command": "flutter",
+                "args": [
+                    "clean"
+                ],
+                "problemMatcher": []
+            },
+            {
+                "label": "Flutter: Get Packages",
+                "type": "shell",
+                "command": "flutter",
+                "args": [
+                    "pub",
+                    "get"
+                ],
+                "problemMatcher": []
+            }
+        ]
+    }
+} 
