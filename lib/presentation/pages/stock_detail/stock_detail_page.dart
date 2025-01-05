@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../styles/app_colors.dart';
 import '../../styles/app_text_styles.dart';
@@ -5,6 +6,7 @@ import '../../widgets/atoms/app_text.dart';
 import '../../widgets/molecules/jitta_score_display.dart';
 import '../../widgets/molecules/stock_price_display.dart';
 
+@RoutePage()
 class StockDetailPage extends StatelessWidget {
   final String stockId;
 

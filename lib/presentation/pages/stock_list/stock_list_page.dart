@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:jitta_ranking_app/presentation/routes/app_router.dart';
 import '../../styles/app_colors.dart';
-import '../../styles/app_text_styles.dart';
 import '../../widgets/atoms/app_text.dart';
 import '../../widgets/molecules/market_selector.dart';
+import '../../widgets/molecules/stock_list_item.dart';
+import '../../widgets/templates/section_container.dart';
 
+@RoutePage()
 class StockListPage extends StatelessWidget {
   const StockListPage({super.key});
 
@@ -17,7 +21,7 @@ class StockListPage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // TODO: Navigate to settings page
+              context.router.push(const SettingsRoute());
             },
           ),
         ],
@@ -34,14 +38,11 @@ class StockListPage extends StatelessWidget {
   }
 
   Widget _buildHeader() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        border: Border(
-          bottom: BorderSide(
-            color: AppColors.border,
-          ),
+    return SectionContainer(
+      margin: EdgeInsets.zero,
+      border: Border(
+        bottom: BorderSide(
+          color: AppColors.border,
         ),
       ),
       child: Column(
@@ -78,8 +79,21 @@ class StockListPage extends StatelessWidget {
   }
 
   Widget _buildStockList() {
-    return const Center(
-      child: AppText('TODO: Implement stock list'),
+    return ListView.builder(
+      itemCount: 10, // TODO: Get from bloc
+      itemBuilder: (context, index) {
+        return StockListItem(
+          symbol: 'AAPL',  // TODO: Get from bloc
+          companyName: 'Apple Inc.',  // TODO: Get from bloc
+          price: 180.75,  // TODO: Get from bloc
+          priceChange: 2.5,  // TODO: Get from bloc
+          currency: '\$',
+          jittaScore: 8.5,  // TODO: Get from bloc
+          onTap: () {
+            context.router.push(StockDetailRoute(stockId: 'AAPL'));
+          },
+        );
+      },
     );
   }
 } 
