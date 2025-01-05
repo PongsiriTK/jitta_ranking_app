@@ -68,6 +68,11 @@ class StockRepositoryImpl implements StockRepository {
       // On error, try to get from cache
       try {
         final cachedResult = await localDataSource.getCachedStockDetail(id);
+        if (cachedResult == null) {
+          return Left(CacheFailure(
+            message: 'Stock detail not found in cache',
+          ));
+        }
         return Right(cachedResult);
       } catch (e) {
         return Left(CacheFailure(
@@ -128,6 +133,11 @@ class StockRepositoryImpl implements StockRepository {
   Future<Either<Failure, StockDetail>> getCachedStockDetail(String stockId) async {
     try {
       final result = await localDataSource.getCachedStockDetail(stockId);
+      if (result == null) {
+        return Left(CacheFailure(
+          message: 'Stock detail not found in cache',
+        ));
+      }
       return Right(result);
     } catch (e) {
       return Left(CacheFailure(

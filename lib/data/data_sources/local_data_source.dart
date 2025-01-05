@@ -11,7 +11,7 @@ abstract class LocalDataSource {
   Future<void> cacheStockDetail(StockDetail stockDetail);
 
   /// Get cached stock detail
-  Future<StockDetail> getCachedStockDetail(String stockId);
+  Future<StockDetail?> getCachedStockDetail(String stockId);
 
   /// Cache sectors
   Future<void> cacheSectors(List<Sector> sectors);
