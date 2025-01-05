@@ -56,7 +56,7 @@ class SettingsPage extends StatelessWidget {
             title: 'About',
             child: Column(
               children: [
-                SettingsListItem(
+                const SettingsListItem(
                   title: 'Version',
                   trailing: AppText('1.0.0'), // TODO: Get from package info
                 ),

@@ -66,11 +66,11 @@ class AppCard extends StatelessWidget {
   }) =>
       AppCard(
         key: key,
-        child: child,
         padding: padding,
         margin: margin,
         borderRadius: borderRadius,
         onTap: onTap,
+        child: child,
       );
 
   factory AppCard.outlined({
@@ -83,13 +83,13 @@ class AppCard extends StatelessWidget {
   }) =>
       AppCard(
         key: key,
-        child: child,
         padding: padding,
         margin: margin,
         borderRadius: borderRadius,
         border: Border.all(color: AppColors.border),
         boxShadow: const [],
         onTap: onTap,
+        child: child,
       );
 
   factory AppCard.flat({
@@ -102,11 +102,11 @@ class AppCard extends StatelessWidget {
   }) =>
       AppCard(
         key: key,
-        child: child,
         padding: padding,
         margin: margin,
         borderRadius: borderRadius,
         boxShadow: const [],
         onTap: onTap,
+        child: child,
       );
 } 

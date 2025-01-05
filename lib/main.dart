@@ -57,13 +57,13 @@ class MyApp extends StatelessWidget {
         surface: AppColors.surface,
       ),
       scaffoldBackgroundColor: AppColors.background,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.surface,
         elevation: 0,
         centerTitle: false,
         iconTheme: IconThemeData(color: AppColors.textPrimary),
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         headlineLarge: AppTextStyles.h1,
         headlineMedium: AppTextStyles.h2,
         headlineSmall: AppTextStyles.h3,
@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
         labelMedium: AppTextStyles.labelMedium,
         labelSmall: AppTextStyles.labelSmall,
       ),
-      dividerTheme: DividerThemeData(
+      dividerTheme: const DividerThemeData(
         color: AppColors.border,
         thickness: 1,
       ),

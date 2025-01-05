@@ -40,7 +40,7 @@ class StockListPage extends StatelessWidget {
   Widget _buildHeader() {
     return SectionContainer(
       margin: EdgeInsets.zero,
-      border: Border(
+      border: const Border(
         bottom: BorderSide(
           color: AppColors.border,
         ),

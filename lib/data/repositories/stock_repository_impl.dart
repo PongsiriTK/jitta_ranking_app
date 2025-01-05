@@ -69,7 +69,7 @@ class StockRepositoryImpl implements StockRepository {
       try {
         final cachedResult = await localDataSource.getCachedStockDetail(id);
         if (cachedResult == null) {
-          return Left(CacheFailure(
+          return const Left(CacheFailure(
             message: 'Stock detail not found in cache',
           ));
         }
@@ -134,7 +134,7 @@ class StockRepositoryImpl implements StockRepository {
     try {
       final result = await localDataSource.getCachedStockDetail(stockId);
       if (result == null) {
-        return Left(CacheFailure(
+        return const Left(CacheFailure(
           message: 'Stock detail not found in cache',
         ));
       }
