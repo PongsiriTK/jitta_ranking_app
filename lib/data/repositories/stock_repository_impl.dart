@@ -3,8 +3,8 @@ import '../../core/error/failures.dart';
 import '../../core/utils/typedef.dart';
 import '../../domain/models/models.dart';
 import '../../domain/repositories/stock_repository.dart';
-import '../data_sources/local_data_source.dart';
-import '../data_sources/remote_data_source.dart';
+import '../datasources/local_data_source.dart';
+import '../datasources/remote_data_source.dart';
 
 class StockRepositoryImpl implements StockRepository {
   final RemoteDataSource remoteDataSource;

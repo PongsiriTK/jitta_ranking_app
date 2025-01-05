@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import '../../core/error/failures.dart';
 import '../../core/utils/typedef.dart';
 import '../../domain/repositories/settings_repository.dart';
-import '../data_sources/local_data_source.dart';
+import '../datasources/local_data_source.dart';
 
 class SettingsRepositoryImpl implements SettingsRepository {
   final LocalDataSource localDataSource;

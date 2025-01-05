@@ -1,5 +1,5 @@
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:jitta_ranking_app/data/data_sources/remote_data_source.dart';
+import 'package:jitta_ranking_app/data/datasources/remote_data_source.dart';
 import 'package:jitta_ranking_app/domain/models/models.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
