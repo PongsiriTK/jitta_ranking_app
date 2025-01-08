@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:dartz/dartz.dart';
 import '../../core/error/failures.dart';
 import '../../core/utils/typedef.dart';
@@ -142,6 +144,47 @@ class StockRepositoryImpl implements StockRepository {
     } catch (e) {
       return Left(CacheFailure(
         message: 'Failed to get cached stock detail: ${e.toString()}',
+      ));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Market>>> getMarkets() async {
+    try {
+      // Load markets from JSON file
+      final String jsonString = await rootBundle.loadString('assets/markets.json');
+      final Map<String, dynamic> jsonMap = json.decode(jsonString);
+      final List<dynamic> marketsJson = jsonMap['markets'];
+      
+      final markets = marketsJson
+          .map((json) => Market.fromJson(json))
+          .toList();
+
+      // Cache the markets
+      await localDataSource.cacheMarkets(markets);
+      
+      return Right(markets);
+    } catch (e) {
+      // On error, try to get from cache
+      try {
+        final cachedMarkets = await localDataSource.getCachedMarkets();
+        return Right(cachedMarkets);
+      } catch (e) {
+        return Left(CacheFailure(
+          message: 'Failed to get markets: ${e.toString()}',
+        ));
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Market>>> getCachedMarkets() async {
+    try {
+      final markets = await localDataSource.getCachedMarkets();
+      return Right(markets);
+    } catch (e) {
+      return Left(CacheFailure(
+        message: 'Failed to get cached markets: ${e.toString()}',
       ));
     }
   }

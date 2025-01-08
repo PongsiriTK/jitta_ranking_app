@@ -27,4 +27,10 @@ abstract class StockRepository {
 
   /// Get cached stock detail
   ResultFuture<StockDetail> getCachedStockDetail(String stockId);
+
+  /// Get list of available markets
+  ResultFuture<List<Market>> getMarkets();
+
+  /// Get cached markets
+  ResultFuture<List<Market>> getCachedMarkets();
 } 

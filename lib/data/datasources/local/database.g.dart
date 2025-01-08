@@ -4212,6 +4212,258 @@ class StockSignColumnsCompanion extends UpdateCompanion<StockSignColumnEntity> {
   }
 }
 
+class $MarketsTable extends Markets
+    with TableInfo<$MarketsTable, MarketEntity> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MarketsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _codeMeta = const VerificationMeta('code');
+  @override
+  late final GeneratedColumn<String> code = GeneratedColumn<String>(
+      'code', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+      'name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _updatedAtMeta =
+      const VerificationMeta('updatedAt');
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+      'updated_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [code, name, id, updatedAt];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'markets';
+  @override
+  VerificationContext validateIntegrity(Insertable<MarketEntity> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('code')) {
+      context.handle(
+          _codeMeta, code.isAcceptableOrUnknown(data['code']!, _codeMeta));
+    } else if (isInserting) {
+      context.missing(_codeMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(_updatedAtMeta,
+          updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  MarketEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MarketEntity(
+      code: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}code'])!,
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      updatedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}updated_at'])!,
+    );
+  }
+
+  @override
+  $MarketsTable createAlias(String alias) {
+    return $MarketsTable(attachedDatabase, alias);
+  }
+}
+
+class MarketEntity extends DataClass implements Insertable<MarketEntity> {
+  final String code;
+  final String name;
+  final int id;
+  final DateTime updatedAt;
+  const MarketEntity(
+      {required this.code,
+      required this.name,
+      required this.id,
+      required this.updatedAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['code'] = Variable<String>(code);
+    map['name'] = Variable<String>(name);
+    map['id'] = Variable<int>(id);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    return map;
+  }
+
+  MarketsCompanion toCompanion(bool nullToAbsent) {
+    return MarketsCompanion(
+      code: Value(code),
+      name: Value(name),
+      id: Value(id),
+      updatedAt: Value(updatedAt),
+    );
+  }
+
+  factory MarketEntity.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MarketEntity(
+      code: serializer.fromJson<String>(json['code']),
+      name: serializer.fromJson<String>(json['name']),
+      id: serializer.fromJson<int>(json['id']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'code': serializer.toJson<String>(code),
+      'name': serializer.toJson<String>(name),
+      'id': serializer.toJson<int>(id),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+    };
+  }
+
+  MarketEntity copyWith(
+          {String? code, String? name, int? id, DateTime? updatedAt}) =>
+      MarketEntity(
+        code: code ?? this.code,
+        name: name ?? this.name,
+        id: id ?? this.id,
+        updatedAt: updatedAt ?? this.updatedAt,
+      );
+  MarketEntity copyWithCompanion(MarketsCompanion data) {
+    return MarketEntity(
+      code: data.code.present ? data.code.value : this.code,
+      name: data.name.present ? data.name.value : this.name,
+      id: data.id.present ? data.id.value : this.id,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MarketEntity(')
+          ..write('code: $code, ')
+          ..write('name: $name, ')
+          ..write('id: $id, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(code, name, id, updatedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MarketEntity &&
+          other.code == this.code &&
+          other.name == this.name &&
+          other.id == this.id &&
+          other.updatedAt == this.updatedAt);
+}
+
+class MarketsCompanion extends UpdateCompanion<MarketEntity> {
+  final Value<String> code;
+  final Value<String> name;
+  final Value<int> id;
+  final Value<DateTime> updatedAt;
+  const MarketsCompanion({
+    this.code = const Value.absent(),
+    this.name = const Value.absent(),
+    this.id = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+  });
+  MarketsCompanion.insert({
+    required String code,
+    required String name,
+    this.id = const Value.absent(),
+    required DateTime updatedAt,
+  })  : code = Value(code),
+        name = Value(name),
+        updatedAt = Value(updatedAt);
+  static Insertable<MarketEntity> custom({
+    Expression<String>? code,
+    Expression<String>? name,
+    Expression<int>? id,
+    Expression<DateTime>? updatedAt,
+  }) {
+    return RawValuesInsertable({
+      if (code != null) 'code': code,
+      if (name != null) 'name': name,
+      if (id != null) 'id': id,
+      if (updatedAt != null) 'updated_at': updatedAt,
+    });
+  }
+
+  MarketsCompanion copyWith(
+      {Value<String>? code,
+      Value<String>? name,
+      Value<int>? id,
+      Value<DateTime>? updatedAt}) {
+    return MarketsCompanion(
+      code: code ?? this.code,
+      name: name ?? this.name,
+      id: id ?? this.id,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (code.present) {
+      map['code'] = Variable<String>(code.value);
+    }
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MarketsCompanion(')
+          ..write('code: $code, ')
+          ..write('name: $name, ')
+          ..write('id: $id, ')
+          ..write('updatedAt: $updatedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -4223,6 +4475,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $StockHistoricalDataTable(this);
   late final $StockSignColumnsTable stockSignColumns =
       $StockSignColumnsTable(this);
+  late final $MarketsTable markets = $MarketsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -4233,7 +4486,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         stockDetails,
         settings,
         stockHistoricalData,
-        stockSignColumns
+        stockSignColumns,
+        markets
       ];
 }
 
@@ -6850,6 +7104,150 @@ typedef $$StockSignColumnsTableProcessedTableManager = ProcessedTableManager<
     (StockSignColumnEntity, $$StockSignColumnsTableReferences),
     StockSignColumnEntity,
     PrefetchHooks Function({bool stockId})>;
+typedef $$MarketsTableCreateCompanionBuilder = MarketsCompanion Function({
+  required String code,
+  required String name,
+  Value<int> id,
+  required DateTime updatedAt,
+});
+typedef $$MarketsTableUpdateCompanionBuilder = MarketsCompanion Function({
+  Value<String> code,
+  Value<String> name,
+  Value<int> id,
+  Value<DateTime> updatedAt,
+});
+
+class $$MarketsTableFilterComposer
+    extends Composer<_$AppDatabase, $MarketsTable> {
+  $$MarketsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get code => $composableBuilder(
+      column: $table.code, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get name => $composableBuilder(
+      column: $table.name, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnFilters(column));
+}
+
+class $$MarketsTableOrderingComposer
+    extends Composer<_$AppDatabase, $MarketsTable> {
+  $$MarketsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get code => $composableBuilder(
+      column: $table.code, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get name => $composableBuilder(
+      column: $table.name, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnOrderings(column));
+}
+
+class $$MarketsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MarketsTable> {
+  $$MarketsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get code =>
+      $composableBuilder(column: $table.code, builder: (column) => column);
+
+  GeneratedColumn<String> get name =>
+      $composableBuilder(column: $table.name, builder: (column) => column);
+
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+}
+
+class $$MarketsTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $MarketsTable,
+    MarketEntity,
+    $$MarketsTableFilterComposer,
+    $$MarketsTableOrderingComposer,
+    $$MarketsTableAnnotationComposer,
+    $$MarketsTableCreateCompanionBuilder,
+    $$MarketsTableUpdateCompanionBuilder,
+    (MarketEntity, BaseReferences<_$AppDatabase, $MarketsTable, MarketEntity>),
+    MarketEntity,
+    PrefetchHooks Function()> {
+  $$MarketsTableTableManager(_$AppDatabase db, $MarketsTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MarketsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MarketsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MarketsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> code = const Value.absent(),
+            Value<String> name = const Value.absent(),
+            Value<int> id = const Value.absent(),
+            Value<DateTime> updatedAt = const Value.absent(),
+          }) =>
+              MarketsCompanion(
+            code: code,
+            name: name,
+            id: id,
+            updatedAt: updatedAt,
+          ),
+          createCompanionCallback: ({
+            required String code,
+            required String name,
+            Value<int> id = const Value.absent(),
+            required DateTime updatedAt,
+          }) =>
+              MarketsCompanion.insert(
+            code: code,
+            name: name,
+            id: id,
+            updatedAt: updatedAt,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$MarketsTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $MarketsTable,
+    MarketEntity,
+    $$MarketsTableFilterComposer,
+    $$MarketsTableOrderingComposer,
+    $$MarketsTableAnnotationComposer,
+    $$MarketsTableCreateCompanionBuilder,
+    $$MarketsTableUpdateCompanionBuilder,
+    (MarketEntity, BaseReferences<_$AppDatabase, $MarketsTable, MarketEntity>),
+    MarketEntity,
+    PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -6866,4 +7264,6 @@ class $AppDatabaseManager {
       $$StockHistoricalDataTableTableManager(_db, _db.stockHistoricalData);
   $$StockSignColumnsTableTableManager get stockSignColumns =>
       $$StockSignColumnsTableTableManager(_db, _db.stockSignColumns);
+  $$MarketsTableTableManager get markets =>
+      $$MarketsTableTableManager(_db, _db.markets);
 }

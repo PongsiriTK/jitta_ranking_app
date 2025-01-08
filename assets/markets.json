@@ -1,0 +1,84 @@
+{
+    "markets": [
+      {
+        "code": "TH",
+        "name": "Thailand",
+        "id": 1
+      },
+      {
+        "code": "US",
+        "name": "United States",
+        "id": 2
+      },
+      {
+        "code": "SG",
+        "name": "Singapore",
+        "id": 3
+      },
+      {
+        "code": "VN",
+        "name": "Vietnam",
+        "id": 4
+      },
+      {
+        "code": "HK",
+        "name": "Hong Kong",
+        "id": 5
+      },
+      {
+        "code": "UK",
+        "name": "United Kingdom",
+        "id": 6
+      },
+      {
+        "code": "JP",
+        "name": "Japan",
+        "id": 7
+      },
+      {
+        "code": "CN",
+        "name": "China",
+        "id": 8
+      },
+      {
+        "code": "TW",
+        "name": "Taiwan",
+        "id": 9
+      },
+      {
+        "code": "IN",
+        "name": "India",
+        "id": 10
+      },
+      {
+        "code": "AU",
+        "name": "Australia",
+        "id": 11
+      },
+      {
+        "code": "DE",
+        "name": "Germany",
+        "id": 12
+      },
+      {
+        "code": "CA",
+        "name": "Canada",
+        "id": 13
+      },
+      {
+        "code": "FR",
+        "name": "France",
+        "id": 14
+      },
+      {
+        "code": "KR",
+        "name": "South Korea",
+        "id": 15
+      },
+      {
+        "code": "RU",
+        "name": "Russia",
+        "id": 16
+      }
+    ]
+  }

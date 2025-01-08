@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:drift/drift.dart';
 import '../../domain/models/models.dart';
 import 'local_data_source.dart';
@@ -560,5 +561,35 @@ class LocalDataSourceImpl implements LocalDataSource {
             ..where((t) => t.key.isIn(['selected_market', 'selected_sectors', 'theme_mode'])))
           .go();
     });
+  }
+
+  @override
+  Future<void> cacheMarkets(List<Market> markets) async {
+    await database.batch((batch) {
+      batch.insertAll(
+        database.markets,
+        markets.map(
+          (m) => MarketsCompanion.insert(
+            code: m.code,
+            id: Value(m.id),
+            name: m.name,
+            updatedAt: DateTime.now(),
+          ),
+        ),
+        mode: InsertMode.insertOrReplace,
+      );
+    });
+  }
+
+  @override
+  Future<List<Market>> getCachedMarkets() async {
+    final markets = await database.select(database.markets).get();
+    return markets
+        .map((m) => Market(
+              id: m.id,
+              code: m.code,
+              name: m.name,
+            ))
+        .toList();
   }
 } 

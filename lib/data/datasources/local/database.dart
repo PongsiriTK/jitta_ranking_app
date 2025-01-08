@@ -13,6 +13,7 @@ part 'database.g.dart';
   Settings,
   StockHistoricalData,
   StockSignColumns,
+  Markets,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
@@ -173,6 +174,8 @@ class StockSignColumns extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+
+
 @DataClassName('SectorEntity')
 class Sectors extends Table {
   TextColumn get id => text()();
@@ -192,3 +195,14 @@ class Settings extends Table {
   @override
   Set<Column> get primaryKey => {key};
 } 
+
+@DataClassName('MarketEntity')
+class Markets extends Table {
+  TextColumn get code => text()();
+  TextColumn get name => text()();
+  IntColumn get id => integer()();
+  DateTimeColumn get updatedAt => dateTime()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}

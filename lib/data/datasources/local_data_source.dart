@@ -48,4 +48,10 @@ abstract class LocalDataSource {
 
   /// Clear all settings (market, sectors, theme)
   Future<void> clearSettings();
+
+  /// Cache markets
+  Future<void> cacheMarkets(List<Market> markets);
+
+  /// Get cached markets
+  Future<List<Market>> getCachedMarkets();
 } 
